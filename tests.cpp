@@ -2,6 +2,7 @@
 #include "celsiustofahrenheitconverter.hpp"
 #include "celsiustokelvinconverter.hpp"
 #include "dollartoeuroconverter.hpp"
+#include "dollartopoundconverter.hpp"
 #include "tinytest.h"
 #include "tests.hpp"
 
@@ -77,21 +78,21 @@ int thirdDollarToEuro () {
 //Tests Dollar->Pound  WERT: 0.64851 vom 2015-11-03 18:30 UTC
 //IMPLEMENT DollarToPoundConverter then exchange 'DollarToEuroConverter' with 'DollarToPoundConverter'
 int firstDollarToPound () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<DollarToPoundConverter>();  
   double dollarValue = 10000.0;
   double poundValue = myConverter->convert(dollarValue);
-  TINYTEST_EQUAL_EPSILON(648.51, poundValue);
+  TINYTEST_EQUAL_EPSILON(6485.10, poundValue);
   return 1;
 }
 int secondDollarToPound () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<DollarToPoundConverter>();  
   double dollarValue = 3000.0;
   double poundValue = myConverter->convert(dollarValue);
   TINYTEST_EQUAL_EPSILON(1945.53, poundValue);
   return 1;
 }
 int thirdDollarToPound () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<DollarToPoundConverter>();  
   double dollarValue = 50.0;
   double poundValue = myConverter->convert(dollarValue);
   TINYTEST_EQUAL_EPSILON(32.4255, poundValue);
