@@ -14,7 +14,7 @@ double CelsiusToKelvinConverter::convert(double inputCelsius){
 }
 
 std::string CelsiusToKelvinConverter::toString() const{
-  return "Celsius to Fahrenheit Converter";
+  return "Celsius to Kelvin Converter";
 }
 
 void CelsiusToKelvinConverter::print() const{

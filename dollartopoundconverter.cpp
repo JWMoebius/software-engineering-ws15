@@ -14,7 +14,7 @@ double DollarToPoundConverter::convert(double inputDollars){
 }
 
 std::string DollarToPoundConverter::toString() const{
-  return "Dollar to Euro Converter";
+  return "Dollar to Pound Converter";
 }
 
 void DollarToPoundConverter::print() const{
