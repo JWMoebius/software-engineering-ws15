@@ -1,11 +1,11 @@
 #include <memory>
-#include "dollartoeuroconverter.hpp"
 #include "celsiustofahrenheitconverter.hpp"
+#include "celsiustokelvinconverter.hpp"
+#include "dollartoeuroconverter.hpp"
 #include "tinytest.h"
 #include "tests.hpp"
 
 //Tests Celsius->Fahrenheit 
-//IMPLEMENT CelsiusToFahrenheitConverter then exchange 'DollarToEuroConverter' with 'CelsiusToFahrenheitConverter'
 int firstCelsiusToFahrenheit () {
   auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();  
   double celsiusValue = 30.0;
@@ -29,23 +29,22 @@ int thirdCelsiusToFahrenheit () {
 }
 
 //Tests Celsius->Kelvin 
-//IMPLEMENT CelsiusToKelvinConverter then exchange 'DollarToEuroConverter' with 'CelsiusToKelvinConverter'
 int firstCelsiusToKelvin () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<CelsiusToKelvinConverter>();  
   double celsiusValue = 30.0;
   double kelvinValue = myConverter->convert(celsiusValue);
   TINYTEST_EQUAL_EPSILON(303.15, kelvinValue);
   return 1;
 }
 int secondCelsiusToKelvin () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<CelsiusToKelvinConverter>();  
   double celsiusValue = 1000.0;
   double kelvinValue = myConverter->convert(celsiusValue);
   TINYTEST_EQUAL_EPSILON(1273.15, kelvinValue);
   return 1;
 }
 int thirdCelsiusToKelvin () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<CelsiusToKelvinConverter>();  
   double celsiusValue = -530.0;
   double kelvinValue = myConverter->convert(celsiusValue);
   TINYTEST_EQUAL_EPSILON(-256.85, kelvinValue);
