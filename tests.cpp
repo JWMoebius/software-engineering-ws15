@@ -1,26 +1,27 @@
 #include <memory>
 #include "dollartoeuroconverter.hpp"
+#include "celsiustofahrenheitconverter.hpp"
 #include "tinytest.h"
 #include "tests.hpp"
 
 //Tests Celsius->Fahrenheit 
 //IMPLEMENT CelsiusToFahrenheitConverter then exchange 'DollarToEuroConverter' with 'CelsiusToFahrenheitConverter'
 int firstCelsiusToFahrenheit () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();  
   double celsiusValue = 30.0;
   double fahrenheitValue = myConverter->convert(celsiusValue);
   TINYTEST_EQUAL_EPSILON(86.0, fahrenheitValue);
   return 1;
 }
 int secondCelsiusToFahrenheit () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();  
   double celsiusValue = 1000.0;
   double fahrenheitValue = myConverter->convert(celsiusValue);
   TINYTEST_EQUAL_EPSILON(1832.0, fahrenheitValue);
   return 1;
 }
 int thirdCelsiusToFahrenheit () {
-  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();  
   double celsiusValue = -530.0;
   double fahrenheitValue = myConverter->convert(celsiusValue);
   TINYTEST_EQUAL_EPSILON(-922.0, fahrenheitValue);
