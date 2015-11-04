@@ -170,7 +170,7 @@ int thirdmetersToFeet () {
 }
 
 
-
+//TEST main via tinytest:
 TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(firstCelsiusToFahrenheit);
   TINYTEST_ADD_TEST(secondCelsiusToFahrenheit);

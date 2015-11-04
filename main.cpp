@@ -17,7 +17,8 @@ int main(int argc, char* argv[])
   std::stringstream passed_double(string_value);
   double value = 0.0;
   passed_double >> value;
-
+	
+  //List of all possible Conversions
   if ("CelsiusToFahrenheit" == conversion) {
     auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();
     double aLotOfFahrenheit = myConverter->convert(value);
