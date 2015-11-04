@@ -6,6 +6,7 @@
 #include "celsiustokelvinconverter.hpp"
 #include "dollartoeuroconverter.hpp"
 #include "dollartopoundconverter.hpp"
+#include "kelvintocelsiusconverter.hpp"
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
 
@@ -36,6 +37,11 @@ int main(int argc, char* argv[])
     auto myConverter = std::make_shared<DollarToPoundConverter>();
     double aLotOfPound = myConverter->convert(value);
     std::cout << myConverter->toString() << " has converted "<< value << " Dollar to " << aLotOfPound <<" Pound!" << std::endl;
+  }
+  else if ("KelvinToCelsius" == conversion) {
+    auto myConverter = std::make_shared<KelvinToCelsiusConverter>();
+    double aLotOfCelsius = myConverter->convert(value);
+    std::cout << myConverter->toString() << " has converted "<< value << " Kelvin to " << aLotOfCelsius <<" Celsius!" << std::endl;
   }
   else if ("MeterToMile" == conversion || "MetreToMile" == conversion || "MetresToMiles" == conversion || "MetersToMiles" == conversion) {
     auto myConverter = std::make_shared<MetersToMilesConverter>();

@@ -7,7 +7,7 @@ class CelsiusToKelvinConverter : public TemperatureConverter
 {
   public:
     CelsiusToKelvinConverter();
-    double convert(double inDollars);
+    double convert(double inCelsius);
     std::string toString() const;
     void print() const;
 };

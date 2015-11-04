@@ -3,6 +3,7 @@
 #include "celsiustokelvinconverter.hpp"
 #include "dollartoeuroconverter.hpp"
 #include "dollartopoundconverter.hpp"
+#include "kelvintocelsiusconverter.hpp"
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
 #include "tinytest.h"
@@ -99,8 +100,30 @@ int thirdDollarToPound () {
   TINYTEST_EQUAL_EPSILON(32.4255, poundValue);
   return 1;
 }
+//Tests Kelvin->Celsius 
+int firstKelvinToCelsius () {
+  auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
+  double kelvinValue = 303.15;
+  double celsiusValue = myConverter->convert(kelvinValue);
+  TINYTEST_EQUAL_EPSILON(30.0, celsiusValue);
+  return 1;
+}
+int secondKelvinToCelsius () {
+  auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
+  double kelvinValue = 1273.15;
+  double celsiusValue = myConverter->convert(kelvinValue);
+  TINYTEST_EQUAL_EPSILON(1000.0, celsiusValue);
+  return 1;
+}
+int thirdKelvinToCelsius () {
+  auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
+  double kelvinValue = -256.85;
+  double celsiusValue = myConverter->convert(kelvinValue);
+  TINYTEST_EQUAL_EPSILON(-530.0, celsiusValue);
+  return 1;
+}
 
-//Tests meters->Miles 
+//Tests Meters->Miles 
 int firstmetersToMiles () {
   auto myConverter = std::make_shared<MetersToMilesConverter>();  
   double meterValue = 1000.0;
@@ -123,7 +146,7 @@ int thirdmetersToMiles () {
   return 1;
 }
 
-//Tests meters->Feet 
+//Tests Meters->Feet 
 int firstmetersToFeet () {
   auto myConverter = std::make_shared<MetersToFeetConverter>();  
   double meterValue = 1000.0;
@@ -161,6 +184,9 @@ TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(firstDollarToPound);
   TINYTEST_ADD_TEST(secondDollarToPound);
   TINYTEST_ADD_TEST(thirdDollarToPound);
+  TINYTEST_ADD_TEST(firstKelvinToCelsius);
+  TINYTEST_ADD_TEST(secondKelvinToCelsius);
+  TINYTEST_ADD_TEST(thirdKelvinToCelsius);
   TINYTEST_ADD_TEST(firstmetersToMiles);
   TINYTEST_ADD_TEST(secondmetersToMiles);
   TINYTEST_ADD_TEST(thirdmetersToMiles);
