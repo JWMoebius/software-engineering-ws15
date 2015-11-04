@@ -1,4 +1,4 @@
-#include "CelsiusToFahrenheitConverter.hpp"
+#include "celsiustofahrenheitconverter.hpp"
 
 #include <string>
 
