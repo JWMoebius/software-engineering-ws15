@@ -17,9 +17,12 @@ main: $(notests_files)
 test:
 	echo MAINTEST
 	./main DollarToEuro 10000
-	echo Tests will now be executed:
-	./tests DollarToEuro 10000
-	
+	./main DollarToPound 10000
+	./main CelsiusToFahrenheit 10000
+	./main CelsiusToKelvin 10000
+	./main MetreToMile 10000
+	./main MetreToFoot  10000
+
 compiletest: $(nomain_files)
 	g++ --std=c++11 -Wall -o tests $^ 
 	
