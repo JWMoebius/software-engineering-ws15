@@ -49,9 +49,9 @@ int secondCelsiusToKelvin () {
 }
 int thirdCelsiusToKelvin () {
   auto myConverter = std::make_shared<CelsiusToKelvinConverter>();  
-  double celsiusValue = -530.0;
+  double celsiusValue = -273.15;
   double kelvinValue = myConverter->convert(celsiusValue);
-  TINYTEST_EQUAL_EPSILON(-256.85, kelvinValue);
+  TINYTEST_EQUAL_EPSILON(0.0, kelvinValue);
   return 1;
 }
 
@@ -117,9 +117,9 @@ int secondKelvinToCelsius () {
 }
 int thirdKelvinToCelsius () {
   auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
-  double kelvinValue = -256.85;
+  double kelvinValue = 0;
   double celsiusValue = myConverter->convert(kelvinValue);
-  TINYTEST_EQUAL_EPSILON(-530.0, celsiusValue);
+  TINYTEST_EQUAL_EPSILON(-273.15, celsiusValue);
   return 1;
 }
 
