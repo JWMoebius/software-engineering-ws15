@@ -1,9 +1,9 @@
 #ifndef CELIUSTOFAHRENHEITCONVERTER_H
 #define CELIUSTOFAHRENHEITCONVERTER_H
 
-#include "unitconverter.hpp"
+#include "temperatureconverter.hpp"
 
-class CelsiusToFahrenheitConverter : public UnitConverter
+class CelsiusToFahrenheitConverter : public TemperatureConverter
 {
   public:
     CelsiusToFahrenheitConverter();

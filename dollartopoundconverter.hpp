@@ -1,9 +1,9 @@
 #ifndef DOLLARTOPOUNDCONVERTER_HPP
 #define DOLLARTOPOUNDCONVERTER_HPP
 
-#include "unitconverter.hpp"
+#include "currencyconverter.hpp"
 
-class DollarToPoundConverter : public UnitConverter
+class DollarToPoundConverter : public CurrencyConverter
 {
   public:
     DollarToPoundConverter();

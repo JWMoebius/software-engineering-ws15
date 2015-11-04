@@ -1,9 +1,9 @@
 #ifndef METERSTOFEETCONVERTER_HPP
 #define METERSTOFEETCONVERTER_HPP
 
-#include "unitconverter.hpp"
+#include "lengthconverter.hpp"
 
-class MetersToFeetConverter : public UnitConverter
+class MetersToFeetConverter : public LengthConverter
 {
   public:
     MetersToFeetConverter();

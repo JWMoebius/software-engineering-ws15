@@ -1,9 +1,9 @@
 #ifndef CELSIUSTOKELVINCONVERTER_HPP
 #define CELSIUSTOKELVINCONVERTER_HPP
 
-#include "unitconverter.hpp"
+#include "temperatureconverter.hpp"
 
-class CelsiusToKelvinConverter : public UnitConverter
+class CelsiusToKelvinConverter : public TemperatureConverter
 {
   public:
     CelsiusToKelvinConverter();

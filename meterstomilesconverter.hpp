@@ -1,9 +1,9 @@
 #ifndef METERSTOMILESCONVERTER_HPP
 #define METERSTOMILESCONVERTER_HPP
 
-#include "unitconverter.hpp"
+#include "lengthconverter.hpp"
 
-class MetersToMilesConverter : public UnitConverter
+class MetersToMilesConverter : public LengthConverter
 {
   public:
     MetersToMilesConverter();
