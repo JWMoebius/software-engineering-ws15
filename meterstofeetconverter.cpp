@@ -8,7 +8,7 @@ MetersToFeetConverter::MetersToFeetConverter()
 /*In: double value of meters
  *Out: feet value of input 
  */
-double MetersToFeetConverter::convert(double inputMeters){
+double MetersToFeetConverter::convert(const double inputMeters) const{
   return inputMeters * 3.280839895013123 ;
 }
 

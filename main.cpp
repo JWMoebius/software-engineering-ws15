@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
   else{	
 	std::cout << "Conversion type" << conversion <<" doesn't exist. Please consult if statement in main.cpp to see all existing conversions." << std::endl;
   }
+
   return 0;
 }
 

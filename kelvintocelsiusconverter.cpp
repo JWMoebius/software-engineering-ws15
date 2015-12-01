@@ -9,7 +9,7 @@ KelvinToCelsiusConverter::KelvinToCelsiusConverter()
 /*In: double value of Kelvin
  *Out: Celsius value
  */
-double KelvinToCelsiusConverter::convert(double inputKelvin){
+double KelvinToCelsiusConverter::convert(const double inputKelvin) const{
   return inputKelvin-273.15;
 }
 

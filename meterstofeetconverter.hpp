@@ -7,7 +7,7 @@ class MetersToFeetConverter : public LengthConverter
 {
   public:
     MetersToFeetConverter();
-    double convert(double inMeters);
+    double convert(const double inMeters) const;
     std::string toString() const;
     void print() const;
 };

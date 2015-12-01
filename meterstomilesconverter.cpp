@@ -8,7 +8,7 @@ MetersToMilesConverter::MetersToMilesConverter()
 /*In: double value of meters
  *Out: miles value of input dollars as of 9.10.15
  */
-double MetersToMilesConverter::convert(double inputMeters){
+double MetersToMilesConverter::convert(const double inputMeters) const{
   return inputMeters * 0.000621371192 ;
 }
 
