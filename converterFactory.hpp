@@ -1,6 +1,6 @@
 #ifndef CONVERTERFACTORY_H
 #define CONVERTERFACTORY_H
-#include <vector>
+#include <map>
 #include <memory>
 #include <cstdlib>
 #include <iostream>
@@ -17,7 +17,16 @@ class ConverterFactory {
     int m_value;
     static ConverterFactory* factory_instance;
     ConverterFactory( int v = 0 ) { m_value = v; }
-
+    std::map<std::string, UnitConverter*> converter_map = 
+	{
+	{"CelsiusToFahrenheit", new CelsiusToFahrenheitConverter},
+	{"CelsiusToKelvin", new CelsiusToKelvinConverter},
+	{"DollarToEuro", new DollarToEuroConverter},
+	{"DollarToPound", new DollarToPoundConverter},
+	{"KelvinToCelsius", new KelvinToCelsiusConverter},
+	{"MeterToMile", new MetersToMilesConverter},
+	{"MeterToFoot", new MetersToFeetConverter}
+	};
   public:
     void test() { std::cout << "Everything's fine. Keep up the good work." << std::endl; }
     int get_value() { return m_value; }
@@ -28,9 +37,19 @@ class ConverterFactory {
       }
 	  return factory_instance;
     }
+	UnitConverter* create2(std::string conversion) {
+      std::map<std::string, UnitConverter*>::iterator it = converter_map.find(conversion);
+	  if ( it == converter_map.end() ) {
+     	    std::cout << "Conversion type \"" << conversion <<"\" doesn't exist." << std::endl << "Please consult std::map in converterFactory.hpp to see all existing conversions." << std::endl;
+			exit(1);
+			return nullptr;
+      }	 else {
+	      return it->second->clone();
+      }	  
+	
+	}
 	std::shared_ptr<UnitConverter> create(std::string conversion) {
       if ("CelsiusToFahrenheit" == conversion) {
-        std::cout << "Because the odds are";
 		auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();
         return myConverter;
 	  }
@@ -59,7 +78,7 @@ class ConverterFactory {
         return myConverter;
       }
       else{	
-	  	std::cout << "Conversion type \"" << conversion <<"\" doesn't exist." << std::endl << "Please consult if statement in main.cpp to see all existing conversions." << std::endl;
+	  	std::cout << "Conversion type \"" << conversion <<"\" doesn't exist." << std::endl << "Please consult std::map in converterFactory.hpp to see all existing conversions." << std::endl;
         exit(1);
 	  }
 	}

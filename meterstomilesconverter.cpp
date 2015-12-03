@@ -19,3 +19,7 @@ std::string MetersToMilesConverter::toString() const{
 void MetersToMilesConverter::print() const{
   std::cout << toString();
 }
+
+UnitConverter* MetersToMilesConverter::clone() const{
+  return new MetersToMilesConverter;
+}

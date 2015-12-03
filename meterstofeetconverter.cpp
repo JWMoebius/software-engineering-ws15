@@ -19,3 +19,7 @@ std::string MetersToFeetConverter::toString() const{
 void MetersToFeetConverter::print() const{
   std::cout << toString();
 }
+
+UnitConverter* MetersToFeetConverter::clone() const {
+  return new MetersToFeetConverter;
+}

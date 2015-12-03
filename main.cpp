@@ -30,6 +30,11 @@ int main(int argc, char* argv[])
   std::cout << "Converter is: " << t->toString() << std::endl;
   std::cout << "Entered value: " << value << " has been converted to " << number << "." << std::endl;
 
+  //second Method
+  UnitConverter* converter_ptr = createdFactory->create2(conversion);
+  double calc_number = converter_ptr->convert(value);
+  std::cout << "Method" << std::endl << "Converter is: " << converter_ptr->toString() << std::endl;
+  std::cout << "Entered value: " << value << " has been converted to " << calc_number << "." << std::endl;
 
   return 0;
 }

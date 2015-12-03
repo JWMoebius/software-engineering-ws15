@@ -10,6 +10,7 @@ class CelsiusToFahrenheitConverter : public TemperatureConverter
     double convert(const double inCelsius) const;
     std::string toString() const;
     void print() const;
+	UnitConverter* clone() const;
 };
 
 #endif // CELIUSTOFAHRENHEITCONVERTER_H

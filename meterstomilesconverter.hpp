@@ -10,6 +10,7 @@ class MetersToMilesConverter : public LengthConverter
     double convert(const double inMeters) const;
     std::string toString() const;
     void print() const;
+	UnitConverter* clone() const;
 };
 
 #endif // METERSTOMILESCONVERTER_HPP

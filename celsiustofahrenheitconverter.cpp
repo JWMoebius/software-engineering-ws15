@@ -17,3 +17,7 @@ std::string CelsiusToFahrenheitConverter::toString() const{
 void CelsiusToFahrenheitConverter::print() const{
   std::cout << toString();
 }
+
+UnitConverter* CelsiusToFahrenheitConverter::clone() const {
+  return new CelsiusToFahrenheitConverter;
+}

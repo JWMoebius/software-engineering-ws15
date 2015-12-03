@@ -20,3 +20,7 @@ std::string DollarToPoundConverter::toString() const{
 void DollarToPoundConverter::print() const{
   std::cout << toString();
 }
+
+UnitConverter* DollarToPoundConverter::clone() const {
+  return new DollarToPoundConverter;
+}
