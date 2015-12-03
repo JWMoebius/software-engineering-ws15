@@ -17,18 +17,17 @@ class ConverterFactory {
     int m_value;
     static ConverterFactory* factory_instance;
     ConverterFactory( int v = 0 ) { m_value = v; }
-    std::map<std::string, UnitConverter*> converter_map = 
+    std::map<std::string, std::shared_ptr<UnitConverter>> converter_map = 
 	{
-	{"CelsiusToFahrenheit", new CelsiusToFahrenheitConverter},
-	{"CelsiusToKelvin", new CelsiusToKelvinConverter},
-	{"DollarToEuro", new DollarToEuroConverter},
-	{"DollarToPound", new DollarToPoundConverter},
-	{"KelvinToCelsius", new KelvinToCelsiusConverter},
-	{"MeterToMile", new MetersToMilesConverter},
-	{"MeterToFoot", new MetersToFeetConverter}
+	{"CelsiusToFahrenheit", std::make_shared<CelsiusToFahrenheitConverter>()},
+	{"CelsiusToKelvin", std::make_shared<CelsiusToKelvinConverter>() },
+	{"DollarToEuro", std::make_shared<DollarToEuroConverter>() },
+	{"DollarToPound", std::make_shared<DollarToPoundConverter>() },
+	{"KelvinToCelsius", std::make_shared<KelvinToCelsiusConverter>() },
+	{"MeterToMile", std::make_shared<MetersToMilesConverter>() },
+	{"MeterToFoot", std::make_shared<MetersToFeetConverter>() }
 	};
   public:
-    void test() { std::cout << "Everything's fine. Keep up the good work." << std::endl; }
     int get_value() { return m_value; }
     void set_value( int v ) { m_value = v; }
     static ConverterFactory* instance() {
@@ -37,18 +36,21 @@ class ConverterFactory {
       }
 	  return factory_instance;
     }
-	UnitConverter* create2(std::string conversion) {
-      std::map<std::string, UnitConverter*>::iterator it = converter_map.find(conversion);
-	  if ( it == converter_map.end() ) {
+	UnitConverter* create2(std::string conversion) {    //Benutze Prototype Style clone-Methode
+
+      std::map<std::string, std::shared_ptr<UnitConverter>>::iterator it = converter_map.find(conversion); //setze Itererator dort, wo sich der Wert des Eingabekeys in der Map befindet 
+	  if ( it == converter_map.end() ) 
+	  {    //Fehlerausgabe
      	    std::cout << "Conversion type \"" << conversion <<"\" doesn't exist." << std::endl << "Please consult std::map in converterFactory.hpp to see all existing conversions." << std::endl;
 			exit(1);
 			return nullptr;
       }	 else {
+	  //Benutze Prototype-Design
 	      return it->second->clone();
       }	  
 	
 	}
-	std::shared_ptr<UnitConverter> create(std::string conversion) {
+	std::shared_ptr<UnitConverter> create(std::string conversion) { //FactoryMethod benutzt Smart-Pointers
       if ("CelsiusToFahrenheit" == conversion) {
 		auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();
         return myConverter;
