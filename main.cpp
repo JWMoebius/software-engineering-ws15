@@ -19,23 +19,23 @@ int main(int argc, char* argv[])
   double value = 0.0;
   passed_double >> value;
   
-  auto createdFactory = ConverterFactory::instance();
-  createdFactory->test();
-   
-  auto temp = createdFactory->create(conversion);
-  std::shared_ptr<UnitConverter> t = temp;
+  
+//Einfach die Methode, die nicht benutzt werden soll auskommentieren.
+  //Benutze FACTORYMEDTHOD-Design  
+  auto createdFactory = ConverterFactory::instance(); 
+  auto temp = createdFactory->create_method(conversion);
+  double number = temp->convert(value);
 
-  double number = t->convert(value);
-
-  std::cout << "Converter is: " << t->toString() << std::endl;
+  std::cout << "Converter is: " << temp->toString() << std::endl;
   std::cout << "Entered value: " << value << " has been converted to " << number << "." << std::endl;
 
-  //second Method
-  UnitConverter* converter_ptr = createdFactory->create2(conversion);
+  //Benutze PROTOTYPE-Design 
+  /*
+  UnitConverter* converter_ptr = createdFactory->create_proto(conversion);
   double calc_number = converter_ptr->convert(value);
   std::cout << "Method" << std::endl << "Converter is: " << converter_ptr->toString() << std::endl;
   std::cout << "Entered value: " << value << " has been converted to " << calc_number << "." << std::endl;
-
+*/
   return 0;
 }
 

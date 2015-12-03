@@ -36,7 +36,7 @@ class ConverterFactory {
       }
 	  return factory_instance;
     }
-	UnitConverter* create2(std::string conversion) {    //Benutze Prototype Style clone-Methode
+	UnitConverter* create_proto(std::string conversion) {    //Benutze Prototype Style clone-Methode der sich aus dem std::map Pool bedient
 
       std::map<std::string, std::shared_ptr<UnitConverter>>::iterator it = converter_map.find(conversion); //setze Itererator dort, wo sich der Wert des Eingabekeys in der Map befindet 
 	  if ( it == converter_map.end() ) 
@@ -50,7 +50,7 @@ class ConverterFactory {
       }	  
 	
 	}
-	std::shared_ptr<UnitConverter> create(std::string conversion) { //FactoryMethod benutzt Smart-Pointers
+	std::shared_ptr<UnitConverter> create_method(std::string conversion) { //FactoryMethod benutzt Smart-Pointers/ hier kein Einsatz der Map, da dies mehr Key-Wörter erlaubt, die erkannt werden. Beispiel des Einsatzes der Map ist oben bei create_proto zu finden.
       if ("CelsiusToFahrenheit" == conversion) {
 		auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();
         return myConverter;

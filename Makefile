@@ -21,7 +21,7 @@ test:
 	./main CelsiusToFahrenheit 10000
 	./main CelsiusToKelvin 10000
 	./main KelvinToCelsius 0
-	./main MetreToMeile 10000
+	./main DasWarToAbsicht 10000
 	./tests
 	
 compiletest: $(nomain_files)
