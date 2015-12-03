@@ -9,6 +9,7 @@
 #include "kelvintocelsiusconverter.hpp"
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
+#include "converterFactory.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -17,7 +18,14 @@ int main(int argc, char* argv[])
   std::stringstream passed_double(string_value);
   double value = 0.0;
   passed_double >> value;
-	
+  
+  auto createdFactory = ConverterFactory::instance();
+  
+  std::cout << "Entered value: " << value << " has been converted to: ";
+  createdFactory->create(conversion)->convert(value);
+  std::cout << "Entered value: " << value << std::endl;
+  
+  /*
   //List of all possible Conversions
   if ("CelsiusToFahrenheit" == conversion) {
     auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();
@@ -57,7 +65,7 @@ int main(int argc, char* argv[])
   else{	
 	std::cout << "Conversion type" << conversion <<" doesn't exist. Please consult if statement in main.cpp to see all existing conversions." << std::endl;
   }
-
+  */
   return 0;
 }
 
