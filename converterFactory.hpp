@@ -79,7 +79,7 @@ class ConverterFactory {
         auto myConverter = std::make_shared<MetersToFeetConverter>();
         return myConverter;
       }
-      else{	
+      else{	//Fehlerbehandlung
 	  	std::cout << "Conversion type \"" << conversion <<"\" doesn't exist." << std::endl << "Please consult std::map in converterFactory.hpp to see all existing conversions." << std::endl;
         exit(1);
 	  }

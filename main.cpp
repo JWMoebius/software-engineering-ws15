@@ -13,11 +13,23 @@
 
 int main(int argc, char* argv[])
 {
-  std::string conversion = argv[1];
+  if(3 != argc) { //Nur drei Eingaben auf Kommandozeile erlaubt [inclusive main]
+    std::cout << "False number of arguments was entered. Please only enter one Converter and Value. Execute the Program again." << std::endl;
+    exit(1); //Verlasse Programm
+  }
+  std::string conversion;
+  double value = 0.0;
+
+  conversion = argv[1];
   std::string string_value = argv[2];
   std::stringstream passed_double(string_value);
-  double value = 0.0;
-  passed_double >> value;
+
+  if (!(passed_double >> value)) { //Falls Umwandlung fehlschlägt, gebe Fehler aus.
+    std::cerr << "Second argument is no number: " << argv[2] << '\n';
+    std::cout << "False arguments were entered. Please only enter one Converter and Value. Execute the Program again" << std::endl;
+    exit(1); //Verlasse Programm
+  }
+  
   
   
 //Einfach die Methode, die nicht benutzt werden soll auskommentieren.
