@@ -23,11 +23,12 @@ test:
 	./main KelvinToCelsius 0
 	./main MetreToMile 10000
 	./main MetreToFoot  10000
+	./main teststest 10000
 	./tests
 	
 compiletest: $(nomain_files)
 	g++ --std=c++11 -Wall -o tests $^ 
 	
 clean:
-	rm main *.o
+	rm main *.o *.exe
 
