@@ -21,8 +21,8 @@ test:
 	./main CelsiusToFahrenheit 10000
 	./main CelsiusToKelvin 10000
 	./main KelvinToCelsius 0
-	./main DasWarToAbsicht 10000
 	./tests
+	./main DasWarToAbsicht 10000
 	
 compiletest: $(nomain_files)
 	g++ --std=c++11 -Wall -o tests $^ 
