@@ -1,3 +1,4 @@
+#include <deque>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -11,9 +12,11 @@
 #include "meterstofeetconverter.hpp"
 #include "converterFactory.hpp"
 #include "inversionDecorator.hpp"
+#include "command.hpp"
 
 int main(int argc, char* argv[])
 {
+  
   if(3 != argc) { //Nur drei Eingaben auf Kommandozeile erlaubt [inclusive main]
     std::cout << "False number of arguments was entered. Please only enter one Converter and Value. Execute the Program again." << std::endl;
     exit(1); //Verlasse Programm
@@ -49,6 +52,31 @@ int main(int argc, char* argv[])
   std::cout << "Method" << std::endl << "Converter is: " << converter_ptr->toString() << std::endl;
   std::cout << "Entered value: " << value << " has been converted to " << calc_number << "." << std::endl;
 */
+
+// command quatsch
+  std::cout << "Please input now commands:[Press STRG+D to stop inputing commands]" <<  std::endl 
+    << "Follow this scheme \"ConversionsName\" Inputvalue as floating-point number." << std::endl;
+  std::deque<Command> conversions;
+  for (std::string line; std::getline(std::cin, line);) {
+    bool input_block = false;
+    std::cout << line << std::endl;
+    std::stringstream converterStream(line);
+    std::string converterName; double converterValue;
+	converterStream >> converterName;  //Conversion Type 
+	if (!(converterStream >> converterValue)){
+	  input_block = true;
+	  std::cout << " Please try to input a double number as the second argument type" << std::endl;
+    }
+	if (input_block  == false) {
+	  double (UnitConverter::*ptr_action)(double) const = NULL; // To set pointer to convert method you have to initilize the pointer as NULL [at least according to http://www.newty.de/fpt/fpt.html#defi]
+      ptr_action = &UnitConverter::convert;
+      auto ptr_converter = createdFactory->create_method(converterName); //using Factory checks for existing Conversions
+	  Command input_command(ptr_converter, ptr_action ,converterValue);
+	  conversions.push_back(input_command);
+	}
+  }
+
+  
   return 0;
 }
 
