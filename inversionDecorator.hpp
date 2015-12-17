@@ -14,6 +14,7 @@ class inversionDecorator : public converterDecorator{
 	}
 	virtual UnitConverter* clone() const= 0;
 
+	
 };
 
 #endif //INVERSION_DECORATOR_HPP
