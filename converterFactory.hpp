@@ -11,6 +11,7 @@
 #include "kelvintocelsiusconverter.hpp"
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
+#include "yardstometersconverter.hpp"
 
 class ConverterFactory {
   private:
@@ -26,6 +27,7 @@ class ConverterFactory {
 	{"KelvinToCelsius", std::make_shared<KelvinToCelsiusConverter>() },
 	{"MeterToMile", std::make_shared<MetersToMilesConverter>() },
 	{"MeterToFoot", std::make_shared<MetersToFeetConverter>() }
+	{"YardsToMeters", std::make_shared<YardsToMetersConverter>() }
 	};
   public:
     int get_value() { return m_value; }

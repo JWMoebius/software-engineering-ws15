@@ -6,6 +6,8 @@
 #include "kelvintocelsiusconverter.hpp"
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
+#include "yardstometersconverter.hpp"
+#include "inversionDecorator.hpp"
 #include "tinytest.h"
 #include "tests.hpp"
 
@@ -169,6 +171,14 @@ int thirdmetersToFeet () {
   return 1;
 }
 
+int decoratorTest() {
+  auto myConverter = new inversionDecorator(new YardsToMetersConverter() );
+  double yardsValue = 1;
+  double yardsAusgabe = myConverter->convert(yardsValue);
+  TINYTEST_EQUAL_EPSILON(1.0, yardsAusgabe);
+  return 1;
+}
+
 
 //TEST main via tinytest:
 TINYTEST_START_SUITE(tests);
@@ -193,6 +203,7 @@ TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(firstmetersToFeet);
   TINYTEST_ADD_TEST(secondmetersToFeet);
   TINYTEST_ADD_TEST(thirdmetersToFeet);
+  TINYTEST_ADD_TEST(decoratorTest);
 TINYTEST_END_SUITE();;
 TINYTEST_START_MAIN();
 TINYTEST_RUN_SUITE(tests);
