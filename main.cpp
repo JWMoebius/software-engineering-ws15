@@ -10,6 +10,7 @@
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
 #include "converterFactory.hpp"
+#include "inversionDecorator.hpp"
 
 int main(int argc, char* argv[])
 {
