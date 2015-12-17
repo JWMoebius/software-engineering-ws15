@@ -203,7 +203,7 @@ int inversiontemperatureDecoratorTest() {
 }
 
 int unsafeType() {
-  auto myConverter = new inversionDecorator(new DollarToPoundConverter(new YardsToMetersConverter() ) );
+  auto myConverter = new inversionDecorator(new CelsiusToFahrenheitConverter(new YardsToMetersConverter() ) );
   std::cout << std::endl << "Before this message should be a short Error message about type mismatching." << std::endl;
   return 1;
 }

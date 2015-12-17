@@ -5,7 +5,19 @@ MetersToMilesConverter::MetersToMilesConverter()
 {}
 MetersToMilesConverter::MetersToMilesConverter(UnitConverter* m_base)
   :  LengthConverter{m_base}
-{}
+{
+	  if (m_base_ != nullptr) { 
+	    std::stringstream converterStream ( m_base_->toString());
+		std::string converterName;
+		converterStream >> converterName; //Input Type
+		converterStream >> converterName; //TO
+		converterStream >> converterName; //Final result type <-- this one is important
+	    if (converterName != "Meters" ) {
+	      std::cout << "Cannot link converters from these types.[Needs converter with Meters output]" << std::endl;
+		  exit(1);
+	    }
+	  }
+}
 /*In: double value of meters
  *Out: miles value of input dollars as of 9.10.15
  */

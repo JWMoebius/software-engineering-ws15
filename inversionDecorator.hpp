@@ -8,15 +8,16 @@ class inversionDecorator : public converterDecorator{
   public:
     inversionDecorator(){}
     inversionDecorator(UnitConverter* m_base) : converterDecorator{m_base} {
-	if (m_base_ != nullptr) {
-	   
-	  std::string converterName = m_base_->toString();
-	  if (converterName == "Celsius to Fahrenheit Converter" || 
+	  if (m_base_ != nullptr) { 
+	    std::string converterName = m_base_->toString();
+	    if (converterName == "Celsius to Fahrenheit Converter" || 
 	          converterName == "Celsius to Kelvin Converter" || 
 			  converterName == "Kelvin to Celsius Converter") {
-	    std::cout << "Cannot inverse converters from the type temperature converter." << std::endl;
-		exit(1);
-	  }}}
+	      std::cout << "Cannot inverse converters from the type temperature converter." << std::endl;
+		  exit(1);
+	    }
+	  }
+	}
     double convert(const double inValue) const override  {
 	  if (m_base_ == nullptr) {
 	    std::cout << "Missing pointer at InversionDecorator" << std::endl;

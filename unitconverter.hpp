@@ -1,7 +1,9 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
+#include <cstdlib>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 class UnitConverter

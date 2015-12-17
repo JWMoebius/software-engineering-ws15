@@ -6,7 +6,19 @@ CelsiusToKelvinConverter::CelsiusToKelvinConverter()
 {}
 CelsiusToKelvinConverter::CelsiusToKelvinConverter(UnitConverter* m_base)
   :  TemperatureConverter{m_base}
-{}
+{
+	  if (m_base_ != nullptr) { 
+	    std::stringstream converterStream ( m_base_->toString());
+		std::string converterName;
+		converterStream >> converterName; //Input Type
+		converterStream >> converterName; //TO
+		converterStream >> converterName; //Final result type <-- this one is important
+	    if (converterName != "Celsius" ) {
+	      std::cout << "Cannot link converters from these types.[Needs converter with Celsius output]" << std::endl;
+		  exit(1);
+	    }
+	  }
+}
 
 /*In: double value of Celsius
  *Out: Kelvin value 
