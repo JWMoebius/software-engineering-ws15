@@ -7,10 +7,11 @@ class MetersToFeetConverter : public LengthConverter
 {
   public:
     MetersToFeetConverter();
-    double convert(const double inMeters) const;
-    std::string toString() const;
-    void print() const;
-	UnitConverter* clone() const;
+    MetersToFeetConverter(UnitConverter* m_base) ;
+    double convert(const double inMeters) const override;
+    std::string toString() const override;
+    void print() const override;
+	UnitConverter* clone() const override;
 };
 
 #endif // METERSTOFEETCONVERTER_HPP

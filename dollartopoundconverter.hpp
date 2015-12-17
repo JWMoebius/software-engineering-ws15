@@ -7,6 +7,7 @@ class DollarToPoundConverter : public CurrencyConverter
 {
   public:
     DollarToPoundConverter();
+    DollarToPoundConverter(UnitConverter* m_base);
     double convert(const double inDollars) const;
     std::string toString() const;
     void print() const;

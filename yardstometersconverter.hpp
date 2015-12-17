@@ -7,10 +7,12 @@ class YardsToMetersConverter : public LengthConverter
 {
   public:
     YardsToMetersConverter();
-    double convert(const double inMards) const;
-    std::string toString() const;
-    void print() const;
-	UnitConverter* clone() const;
+    YardsToMetersConverter(UnitConverter* m_base);
+
+    double convert(const double inYards) const override;
+    std::string toString() const override;
+    void print() const override;
+	UnitConverter* clone() const override;
 };
 
 #endif // YARDSTOMETERSCONVERTER_HPP

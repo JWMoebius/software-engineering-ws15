@@ -175,7 +175,7 @@ int inversionDecoratorTest() {
   auto myConverter = new inversionDecorator(new YardsToMetersConverter() ) ;
   double yardsValue = 1;
   double yardsAusgabe = myConverter->convert(yardsValue);
-  TINYTEST_EQUAL_EPSILON(0.9144, yardsAusgabe);
+  TINYTEST_EQUAL_EPSILON(1.093613298, yardsAusgabe);
   return 1;
 }
 
@@ -183,25 +183,30 @@ int inversioninversionDecoratorTest() {
   auto myConverter = new inversionDecorator(new inversionDecorator(new YardsToMetersConverter() ) );
   double yardsValue = 1;
   double yardsAusgabe = myConverter->convert(yardsValue);
-  TINYTEST_EQUAL_EPSILON(1.09361328933, yardsAusgabe);
+  TINYTEST_EQUAL_EPSILON(0.9144, yardsAusgabe);
   return 1;
 }
 
 int chainedConverter() {
-  auto myConverter = new inversionDecorator(new inversionDecorator(new YardsToMetersConverter() ) );
-  double yardsValue = 1;
-  double yardsAusgabe = myConverter->convert(yardsValue);
-  TINYTEST_EQUAL_EPSILON(1.09361328933, yardsAusgabe);
+  auto myConverter = new MetersToFeetConverter(new YardsToMetersConverter() ) ;
+  double yardsValue = 1.0;
+  double feetAusgabe = myConverter->convert(yardsValue);
+  TINYTEST_EQUAL_EPSILON(3.0, feetAusgabe);
   return 1;
 }
 int inversiontemperatureDecoratorTest() {
-/*  auto myConverter = new inversionDecorator(new KelvinToCelsiusConverter );
+ /* auto myConverter = new inversionDecorator(new KelvinToCelsiusConverter );
   double yardsValue = 1;
   double yardsAusgabe = myConverter->convert(yardsValue);                   //Entferne Kommentarbefehl um zu sehen, dass Inversion mit Temperatur in einer Kette nicht umwandelbar ist
 */
   return 1;  
 }
 
+int unsafeType() {
+  auto myConverter = new inversionDecorator(new DollarToPoundConverter(new YardsToMetersConverter() ) );
+  std::cout << std::endl << "Before this message should be a short Error message about type mismatching." << std::endl;
+  return 1;
+}
 
 
 //TEST main via tinytest:
@@ -230,6 +235,8 @@ TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(inversionDecoratorTest);
   TINYTEST_ADD_TEST(inversioninversionDecoratorTest);
   TINYTEST_ADD_TEST(inversiontemperatureDecoratorTest);
+  TINYTEST_ADD_TEST(chainedConverter);
+  TINYTEST_ADD_TEST(unsafeType);
 TINYTEST_END_SUITE();;
 TINYTEST_START_MAIN();
 TINYTEST_RUN_SUITE(tests);

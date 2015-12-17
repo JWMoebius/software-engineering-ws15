@@ -22,11 +22,11 @@ test:
 	./main CelsiusToKelvin 10000
 	./main KelvinToCelsius 0
 	./tests
-	./main DasWarToAbsicht 10000
+
 	
 compiletest: $(nomain_files)
 	g++ --std=c++11 -Wall -o tests $^ 
 	
 clean:
-	rm main *.o *.exe
+	echo cleaning test
 
