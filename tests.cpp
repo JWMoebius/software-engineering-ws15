@@ -203,8 +203,8 @@ int inversiontemperatureDecoratorTest() {
 }
 
 int unsafeType() {
-  auto myConverter = new inversionDecorator(new CelsiusToFahrenheitConverter(new YardsToMetersConverter() ) );
-  std::cout << std::endl << "Before this message should be a short Error message about type mismatching." << std::endl;
+ // auto myConverter = new inversionDecorator(new CelsiusToFahrenheitConverter(new YardsToMetersConverter() ) );
+  std::cout << std::endl << "Here Could be your error message if the line before would be used." << std::endl;
   return 1;
 }
 
@@ -237,7 +237,7 @@ TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(inversiontemperatureDecoratorTest);
   TINYTEST_ADD_TEST(chainedConverter);
   TINYTEST_ADD_TEST(unsafeType);
-TINYTEST_END_SUITE();;
+TINYTEST_END_SUITE();
 TINYTEST_START_MAIN();
 TINYTEST_RUN_SUITE(tests);
 TINYTEST_END_MAIN();

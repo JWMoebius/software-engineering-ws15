@@ -16,17 +16,10 @@ main: $(notests_files)
 
 test:
 	echo MAINTEST
-	./main DollarToEuro 10000
-	./main DollarToPound 10000
-	./main CelsiusToFahrenheit 10000
-	./main CelsiusToKelvin 10000
-	./main KelvinToCelsius 0
 	./tests
-
 	
 compiletest: $(nomain_files)
 	g++ --std=c++11 -Wall -o tests $^ 
 	
 clean:
-	echo cleaning test
-
+	rm main *.o *.exe
