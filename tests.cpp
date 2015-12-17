@@ -171,13 +171,37 @@ int thirdmetersToFeet () {
   return 1;
 }
 
-int decoratorTest() {
-  auto myConverter = new inversionDecorator(new YardsToMetersConverter() );
+int inversionDecoratorTest() {
+  auto myConverter = new inversionDecorator(new YardsToMetersConverter() ) ;
   double yardsValue = 1;
   double yardsAusgabe = myConverter->convert(yardsValue);
-  TINYTEST_EQUAL_EPSILON(1.0, yardsAusgabe);
+  TINYTEST_EQUAL_EPSILON(0.9144, yardsAusgabe);
   return 1;
 }
+
+int inversioninversionDecoratorTest() {
+  auto myConverter = new inversionDecorator(new inversionDecorator(new YardsToMetersConverter() ) );
+  double yardsValue = 1;
+  double yardsAusgabe = myConverter->convert(yardsValue);
+  TINYTEST_EQUAL_EPSILON(1.09361328933, yardsAusgabe);
+  return 1;
+}
+
+int chainedConverter() {
+  auto myConverter = new inversionDecorator(new inversionDecorator(new YardsToMetersConverter() ) );
+  double yardsValue = 1;
+  double yardsAusgabe = myConverter->convert(yardsValue);
+  TINYTEST_EQUAL_EPSILON(1.09361328933, yardsAusgabe);
+  return 1;
+}
+int inversiontemperatureDecoratorTest() {
+/*  auto myConverter = new inversionDecorator(new KelvinToCelsiusConverter );
+  double yardsValue = 1;
+  double yardsAusgabe = myConverter->convert(yardsValue);                   //Entferne Kommentarbefehl um zu sehen, dass Inversion mit Temperatur in einer Kette nicht umwandelbar ist
+*/
+  return 1;  
+}
+
 
 
 //TEST main via tinytest:
@@ -203,7 +227,9 @@ TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(firstmetersToFeet);
   TINYTEST_ADD_TEST(secondmetersToFeet);
   TINYTEST_ADD_TEST(thirdmetersToFeet);
-  TINYTEST_ADD_TEST(decoratorTest);
+  TINYTEST_ADD_TEST(inversionDecoratorTest);
+  TINYTEST_ADD_TEST(inversioninversionDecoratorTest);
+  TINYTEST_ADD_TEST(inversiontemperatureDecoratorTest);
 TINYTEST_END_SUITE();;
 TINYTEST_START_MAIN();
 TINYTEST_RUN_SUITE(tests);

@@ -26,7 +26,7 @@ class ConverterFactory {
 	{"DollarToPound", std::make_shared<DollarToPoundConverter>() },
 	{"KelvinToCelsius", std::make_shared<KelvinToCelsiusConverter>() },
 	{"MeterToMile", std::make_shared<MetersToMilesConverter>() },
-	{"MeterToFoot", std::make_shared<MetersToFeetConverter>() }
+	{"MeterToFoot", std::make_shared<MetersToFeetConverter>() },
 	{"YardsToMeters", std::make_shared<YardsToMetersConverter>() }
 	};
   public:
