@@ -13,8 +13,8 @@ class Command {
 		   m_converter{converter}, m_method{action}, m_parameter{arg} {}
     void execute() 
 		{  
-		  (*m_converter.*m_method)(m_parameter);
-          std::cout << "Convert " << m_parameter << " to " << (*m_converter.*m_method)(m_parameter) << std::endl;
+		  double result = (*m_converter.*m_method)(m_parameter);
+          std::cout << "You converted " << m_parameter << " to the value " << result << "." << std::endl;
 		
 		}
 
