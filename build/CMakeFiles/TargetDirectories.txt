@@ -1,0 +1,2 @@
+/home/aver/Documents/software-engineering-ws15/build/CMakeFiles/main.dir
+/home/aver/Documents/software-engineering-ws15/build/CMakeFiles/tests.dir

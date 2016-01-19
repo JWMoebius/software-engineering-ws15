@@ -1,0 +1,23 @@
+Start testing: Jan 19 17:00 CET
+----------------------------------------------------------
+1/1 Testing: ../Teste_tests
+1/1 Test: ../Teste_tests
+Command: "/home/aver/Documents/software-engineering-ws15/build/tests"
+Directory: /home/aver/Documents/software-engineering-ws15/build
+"../Teste_tests" start time: Jan 19 17:00 CET
+Output:
+----------------------------------------------------------
+
+Here Could be your error message if the line before would be used.
+..........................
+OK: 26
+
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"../Teste_tests" end time: Jan 19 17:00 CET
+"../Teste_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 19 17:00 CET
