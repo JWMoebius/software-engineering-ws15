@@ -11,7 +11,6 @@
 #include "tinytest.h"
 #include "tests.hpp"
 
-//Tests Celsius->Fahrenheit 
 int firstCelsiusToFahrenheit () {
   auto myConverter = std::make_shared<CelsiusToFahrenheitConverter>();  
   double celsiusValue = 30.0;
@@ -204,7 +203,7 @@ int inversiontemperatureDecoratorTest() {
 
 int unsafeType() {
  // auto myConverter = new inversionDecorator(new CelsiusToFahrenheitConverter(new YardsToMetersConverter() ) );
-  std::cout << std::endl << "Here Could be your error message if the line before would be used." << std::endl;
+  //std::cout << std::endl << "Here Could be your error message if the line before would be used." << std::endl;
   return 1;
 }
 

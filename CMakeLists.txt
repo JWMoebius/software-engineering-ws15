@@ -33,4 +33,19 @@ dollartopoundconverter.cpp
 unitconverter.cpp 
 kelvintocelsiusconverter.cpp 
 yardstometersconverter.cpp )
-add_test(../Teste_tests tests)
+add_executable(cmake_test 
+lengthconverter.cpp
+celsiustofahrenheitconverter.cpp 
+celsiustokelvinconverter.cpp 
+meterstofeetconverter.cpp 
+meterstomilesconverter.cpp 
+converterDecorator.cpp 
+temperatureconverter.cpp 
+currencyconverter.cpp 
+cmake_test.cpp 
+dollartoeuroconverter.cpp 
+dollartopoundconverter.cpp 
+unitconverter.cpp 
+kelvintocelsiusconverter.cpp 
+yardstometersconverter.cpp )
+add_test(../Teste_tests cmake_test)
