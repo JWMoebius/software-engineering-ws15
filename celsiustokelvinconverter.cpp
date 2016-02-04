@@ -24,11 +24,25 @@ CelsiusToKelvinConverter::CelsiusToKelvinConverter(UnitConverter* m_base)
  *Out: Kelvin value 
  */
 double CelsiusToKelvinConverter::convert(const double inputCelsius) const{
-  if (m_base_ != nullptr) {
-    double temp = m_base_->convert(inputCelsius);
-    return (temp + 273.15);    
+  try {
+    if (inputCelsius < -273.15) {
+	  std::stringstream temp; 
+	  temp << inputCelsius;
+	  std::string error_arg;
+	  temp.str(error_arg);
+      throw input_error();
+    }
+    if (m_base_ != nullptr) {
+      double temp = m_base_->convert(inputCelsius);
+      return (temp + 273.15);    
+    }
+    return inputCelsius+273.15;
   }
-  return inputCelsius+273.15;
+    catch (input_error & except) {
+      std::cout <<std::endl<< "Input Parameter for CelsiusToKelvin Conversion is out of range:"  << except.what(inputCelsius) << std::endl;
+	  std::cout << std::endl <<"Stop conversion for save exit." << std::endl;
+	  exit(1);
+  }
 }
 
 std::string CelsiusToKelvinConverter::toString() const{

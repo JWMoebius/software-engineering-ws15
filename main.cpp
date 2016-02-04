@@ -12,6 +12,7 @@
 #include "meterstofeetconverter.hpp"
 #include "converterFactory.hpp"
 #include "inversionDecorator.hpp"
+#include "no_converter_exception.hpp"
 #include "command.hpp"
 
 int main(int argc, char* argv[])
@@ -61,24 +62,47 @@ int main(int argc, char* argv[])
 	bool input_block = false;
     std::stringstream converterStream(line);
     std::string converterName; double converterValue;
-	converterStream >> converterName;  //Conversion Type 
-	if (!(converterStream >> converterValue)){
-	  input_block = true;
-	  std::cout << " Please try to input a double number as the second argument type" << std::endl;
-    }
-	if (input_block  == false) {
-	  double (UnitConverter::*ptr_action)(double) const = NULL; // To set pointer to convert method you have to initilize the pointer as NULL [at least according to http://www.newty.de/fpt/fpt.html#defi]
-      ptr_action = &UnitConverter::convert;
-      auto ptr_converter = createdFactory->create_method(converterName); //using Factory checks for existing Conversions
-	  Command input_command(ptr_converter, ptr_action, converterValue);
-	  conversions.push_back(input_command);
+	try {
+	  converterStream >> converterName;  //Conversion Type 
+	  if (("CelsiusToFahrenheit" != converterName) || 
+	      ("CelsiusToKelvin" != converterName) || 
+		  ("DollarToEuro" != converterName) || 
+		  ("DollarToPound" != converterName) || 
+		  ("KelvinToCelsius" != converterName) || 
+		  ("MeterToMile" != converterName) || 
+		  ("MetreToMile" != converterName) || 
+		  ("MetresToMiles" != converterName) || 
+		  ("MetersToMiles" != converterName) || 
+		  ("MeterToFoot" != converterName) || 
+		  ("MetreToFoot" != converterName) || 
+		  ("MetresToFeet" != converterName) || 
+		  ("MetersToFeet" != converterName) || 
+		  ("YardsToMeters" != converterName) || 
+		  ("YardToMetre" != converterName) || 
+		  ("YardsToMetres" != converterName)) 
+	  {
+	    throw no_converter_error();
+	  }
+	  if (!(converterStream >> converterValue)){
+	    input_block = true;
+	    std::cout << " Please try to input a double number as the second argument type" << std::endl;
+      }
+	  if (input_block  == false) {
+	    double (UnitConverter::*ptr_action)(double) const = NULL; // To set pointer to convert method you have to initilize the pointer as NULL [at least according to http://www.newty.de/fpt/fpt.html#defi]
+        ptr_action = &UnitConverter::convert;
+        auto ptr_converter = createdFactory->create_method(converterName); //using Factory checks for existing Conversions
+	    Command input_command(ptr_converter, ptr_action, converterValue);
+	    conversions.push_back(input_command);
+	  }
 	}
-	if ((converterName  == "No")||( converterName  == "NO") || (converterName  == "N") || (converterName  == "n") || (converterName  == "no")) {
-	  break;
+	catch (no_converter_error& except) {
+	  std::cout << std::endl << except.what(converterName) << std::endl;
 	}
-	  std::cout << "Please input now commands:[Input No or N to stop the input of numbers!]" <<  std::endl 
-    << "Follow this scheme \"ConversionsName\" Inputvalue as floating-point number." << std::endl;
-
+	  if ((converterName  == "No")||( converterName  == "NO") || (converterName  == "N") || (converterName  == "n") || (converterName  == "no")) {
+	    break;
+	  }
+	    std::cout << "Please input now commands:[Input No or N to stop the input of numbers!]" <<  std::endl 
+      << "Follow this scheme \"ConversionsName\" Inputvalue as floating-point number." << std::endl;
   }
   for (auto it : conversions) {
     it.execute();

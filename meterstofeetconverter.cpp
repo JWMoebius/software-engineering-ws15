@@ -23,12 +23,26 @@ MetersToFeetConverter::MetersToFeetConverter(UnitConverter* m_base)
  *Out: feet value of input 
  */
 double MetersToFeetConverter::convert(const double inputMeters) const{
-  if (m_base_ != nullptr) {
-    double temp = m_base_->convert(inputMeters);
-    return (temp * 3.280839895013123);    
+  try {
+    if (inputMeters < 0) {
+	  std::stringstream temp; 
+	  temp << inputMeters;
+	  std::string error_arg;
+	  temp.str(error_arg);
+      throw input_error();
+    }
+    if (m_base_ != nullptr) {
+      double temp = m_base_->convert(inputMeters);
+      return (temp * 3.280839895013123);    
+    }
+    return inputMeters * 3.280839895013123 ;
   }
-  return inputMeters * 3.280839895013123 ;
- }
+    catch (input_error & except) {
+      std::cout << std::endl<< "Input Parameter for MetersToFeet Conversion is out of range:"  << except.what(inputMeters) << std::endl;
+	  std::cout << std::endl <<"Stop conversion for save exit." << std::endl;
+	  exit(1);
+  }
+}
 
 std::string MetersToFeetConverter::toString() const{
   return "Meters to Feet Converter";

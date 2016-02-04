@@ -22,11 +22,25 @@ MetersToMilesConverter::MetersToMilesConverter(UnitConverter* m_base)
  *Out: miles value of input dollars as of 9.10.15
  */
 double MetersToMilesConverter::convert(const double inputMeters) const{
-  if (m_base_ != nullptr) {
-    double temp = m_base_->convert(inputMeters);
-    return (temp * 0.000621371192);    
+  try {
+    if (inputMeters < 0) {
+	  std::stringstream temp; 
+	  temp << inputMeters;
+	  std::string error_arg;
+	  temp.str(error_arg);
+      throw input_error();
+    }
+    if (m_base_ != nullptr) {
+      double temp = m_base_->convert(inputMeters);
+      return (temp * 0.000621371192);    
+    }
+    return inputMeters * 0.000621371192 ;
   }
-  return inputMeters * 0.000621371192 ;
+    catch (input_error & except) {
+      std::cout << std::endl<< "Input Parameter for MetersToMiles Conversion is out of range:"  << except.what(inputMeters) << std::endl;
+	  std::cout << std::endl <<"Stop conversion for save exit." << std::endl;
+	  exit(1);
+  }
 }
 
 std::string MetersToMilesConverter::toString() const{

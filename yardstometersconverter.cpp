@@ -23,12 +23,25 @@ YardsToMetersConverter::YardsToMetersConverter(UnitConverter* m_base)
  *Out: meters value of input 
  */
 double YardsToMetersConverter::convert(const double inYards) const{
-  if (m_base_ != nullptr) {
-    double temp = m_base_->convert(inYards);
-    return (temp* 0.9144);    
+  try {
+    if (inYards < 0) {
+	  std::stringstream temp; 
+	  temp << inYards;
+	  std::string error_arg;
+	  temp.str(error_arg);
+      throw input_error();
+    }
+    if (m_base_ != nullptr) {
+      double temp = m_base_->convert(inYards);
+      return (temp* 0.9144);    
+    }
+    return (inYards * 0.9144);
   }
-
-  return (inYards * 0.9144);
+    catch (input_error & except) {
+      std::cout << std::endl << "Input Parameter for YardsToMeters Conversion is out of range:"  << except.what(inYards) << std::endl;
+	  std::cout << std::endl <<"Stop conversion for save exit." << std::endl;
+	  exit(1);
+  }
 }
 
 std::string YardsToMetersConverter::toString() const{

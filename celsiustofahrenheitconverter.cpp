@@ -2,6 +2,7 @@
 
 #include <string>
 
+
 CelsiusToFahrenheitConverter::CelsiusToFahrenheitConverter()
 {}
 CelsiusToFahrenheitConverter::CelsiusToFahrenheitConverter(UnitConverter* m_base)
@@ -21,11 +22,25 @@ CelsiusToFahrenheitConverter::CelsiusToFahrenheitConverter(UnitConverter* m_base
 }
 
 double CelsiusToFahrenheitConverter::convert(const double inputCelsius) const{
-  if (m_base_ != nullptr) {
-    double temp = m_base_->convert(inputCelsius);
-    return (temp*1.8)+32;    
-  }  
-  return (inputCelsius*1.8)+32;
+  try {
+    if (inputCelsius < -273.15) {
+	  std::stringstream temp; 
+	  temp << inputCelsius;
+	  std::string error_arg;
+	  temp.str(error_arg);
+      throw input_error();
+    }
+    if (m_base_ != nullptr) {
+      double temp = m_base_->convert(inputCelsius);
+      return (temp*1.8)+32;    
+    }  
+    return (inputCelsius*1.8)+32;
+    }
+    catch (input_error & except) {
+      std::cout <<std::endl<< "Input Parameter for CelsiusToFahrenheit Conversion is out of range:"  << except.what(inputCelsius) << std::endl;
+	  std::cout << std::endl <<"Stop conversion for save exit." << std::endl;
+	  exit(1);
+  }
 }
 
 std::string CelsiusToFahrenheitConverter::toString() const{

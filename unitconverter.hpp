@@ -3,8 +3,11 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <stdexcept>
 #include <sstream>
 #include <string>
+#include "input_exception.hpp"
+
 
 class UnitConverter
 {

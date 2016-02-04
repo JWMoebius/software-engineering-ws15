@@ -23,11 +23,25 @@ DollarToPoundConverter::DollarToPoundConverter(UnitConverter* m_base)
  *Out: Euro value of input dollars as of 9.10.15
  */
 double DollarToPoundConverter::convert(const double inputDollars) const {
+  try {
+    if (inputDollars < 0.0) {
+	  std::stringstream temp; 
+	  temp << inputDollars;
+	  std::string error_arg;
+	  temp.str(error_arg);
+      throw input_error();
+  }
   if (m_base_ != nullptr) {
     double temp = m_base_->convert(inputDollars);
     return (temp * 0.64851);    
   }
   return inputDollars * 0.64851;
+  }
+  catch (input_error & except) {
+      std::cout << std::endl<< "Input Parameter for DollarToPound Conversion is out of range:"  << except.what(inputDollars) << std::endl;
+	  std::cout << std::endl <<"Stop conversion for save exit." << std::endl;
+	  exit(1);
+  }
 }
 
 std::string DollarToPoundConverter::toString() const{

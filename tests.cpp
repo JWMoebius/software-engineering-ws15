@@ -55,6 +55,13 @@ int thirdCelsiusToKelvin () {
   TINYTEST_EQUAL_EPSILON(0.0, kelvinValue);
   return 1;
 }
+int fourthCelsiusToKelvin () {
+  auto myConverter = std::make_shared<CelsiusToKelvinConverter>();  
+  double celsiusValue = -520;
+  double kelvinValue = myConverter->convert(celsiusValue);
+  TINYTEST_EQUAL_EPSILON(-246.85, kelvinValue);
+  return 1;
+}
 
 //Tests Dollar->Euro 
 int firstDollarToEuro () {
@@ -76,6 +83,14 @@ int thirdDollarToEuro () {
   double dollarValue = 50.0;
   double euroValue = myConverter->convert(dollarValue);
   TINYTEST_EQUAL_EPSILON(44.0, euroValue);
+  return 1;
+}
+
+int fourthDollarToEuro () {
+  auto myConverter = std::make_shared<DollarToEuroConverter>();  
+  double dollarValue = -50.0;
+  double euroValue = myConverter->convert(dollarValue);
+  TINYTEST_EQUAL_EPSILON(-44.0, euroValue);
   return 1;
 }
 
@@ -101,6 +116,14 @@ int thirdDollarToPound () {
   TINYTEST_EQUAL_EPSILON(32.4255, poundValue);
   return 1;
 }
+int fourthDollarToPound () {
+  auto myConverter = std::make_shared<DollarToPoundConverter>();  
+  double dollarValue = -2.0;
+  double poundValue = myConverter->convert(dollarValue);
+  TINYTEST_EQUAL_EPSILON(0.0, poundValue);
+  return 1;
+}
+
 //Tests Kelvin->Celsius 
 int firstKelvinToCelsius () {
   auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
@@ -119,6 +142,13 @@ int secondKelvinToCelsius () {
 int thirdKelvinToCelsius () {
   auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
   double kelvinValue = 0;
+  double celsiusValue = myConverter->convert(kelvinValue);
+  TINYTEST_EQUAL_EPSILON(-273.15, celsiusValue);
+  return 1;
+}
+int fourthKelvinToCelsius () {
+  auto myConverter = std::make_shared<KelvinToCelsiusConverter>();  
+  double kelvinValue = -630.0;
   double celsiusValue = myConverter->convert(kelvinValue);
   TINYTEST_EQUAL_EPSILON(-273.15, celsiusValue);
   return 1;
@@ -146,6 +176,13 @@ int thirdmetersToMiles () {
   TINYTEST_EQUAL_EPSILON(0.041010498687664, mileValue);
   return 1;
 }
+int fourthmetersToMiles () {
+  auto myConverter = std::make_shared<MetersToMilesConverter>();  
+  double meterValue = -66.0;
+  double mileValue = myConverter->convert(meterValue);
+  TINYTEST_EQUAL_EPSILON(-0.041010498687664, mileValue);
+  return 1;
+}
 
 //Tests Meters->Feet 
 int firstmetersToFeet () {
@@ -167,6 +204,13 @@ int thirdmetersToFeet () {
   double meterValue = 66.0;
   double footValue = myConverter->convert(meterValue);
   TINYTEST_EQUAL_EPSILON(216.5354330708661, footValue);
+  return 1;
+}
+int fourthmetersToFeet () {
+  auto myConverter = std::make_shared<MetersToFeetConverter>();  
+  double meterValue = -66.0;
+  double footValue = myConverter->convert(meterValue);
+  TINYTEST_EQUAL_EPSILON(-216.5354330708661, footValue);
   return 1;
 }
 
@@ -236,6 +280,12 @@ TINYTEST_START_SUITE(tests);
   TINYTEST_ADD_TEST(inversiontemperatureDecoratorTest);
   TINYTEST_ADD_TEST(chainedConverter);
   TINYTEST_ADD_TEST(unsafeType);
+  TINYTEST_ADD_TEST(fourthCelsiusToKelvin);
+  TINYTEST_ADD_TEST(fourthDollarToPound);
+  TINYTEST_ADD_TEST(fourthDollarToEuro);
+  TINYTEST_ADD_TEST(fourthKelvinToCelsius);
+  TINYTEST_ADD_TEST(fourthmetersToFeet);
+  TINYTEST_ADD_TEST(fourthmetersToMiles);
 TINYTEST_END_SUITE();
 TINYTEST_START_MAIN();
 TINYTEST_RUN_SUITE(tests);
