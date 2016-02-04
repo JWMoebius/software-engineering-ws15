@@ -1,5 +1,7 @@
 #include <deque>
 #include <iostream>
+#include <float.h>
+#include <limits>
 #include <memory>
 #include <string>
 #include <sstream>
@@ -11,6 +13,7 @@
 #include "meterstomilesconverter.hpp"
 #include "meterstofeetconverter.hpp"
 #include "converterFactory.hpp"
+#include "high_input.hpp"
 #include "inversionDecorator.hpp"
 #include "no_converter_exception.hpp"
 #include "command.hpp"
@@ -63,35 +66,49 @@ int main(int argc, char* argv[])
     std::string converterName; double converterValue;
 	try {
 	  converterStream >> converterName;  //Conversion Type 
-	  if (("CelsiusToFahrenheit" != converterName) || 
-	      ("CelsiusToKelvin" != converterName) || 
-		  ("DollarToEuro" != converterName) || 
-		  ("DollarToPound" != converterName) || 
-		  ("KelvinToCelsius" != converterName) || 
-		  ("MeterToMile" != converterName) || 
-		  ("MetreToMile" != converterName) || 
-		  ("MetresToMiles" != converterName) || 
-		  ("MetersToMiles" != converterName) || 
-		  ("MeterToFoot" != converterName) || 
-		  ("MetreToFoot" != converterName) || 
-		  ("MetresToFeet" != converterName) || 
-		  ("MetersToFeet" != converterName) || 
-		  ("YardsToMeters" != converterName) || 
-		  ("YardToMetre" != converterName) || 
-		  ("YardsToMetres" != converterName)) 
+  	  if (("CelsiusToFahrenheit" != converterName) & 
+	        ("CelsiusToKelvin" != converterName) &
+		    ("DollarToEuro" != converterName) &
+		    ("DollarToPound" != converterName) &
+		    ("KelvinToCelsius" != converterName) & 
+		    ("MeterToMile" != converterName) &
+		    ("MetreToMile" != converterName) & 
+		    ("MetresToMiles" != converterName) & 
+		    ("MetersToMiles" != converterName) & 
+		    ("MeterToFoot" != converterName) & 
+		    ("MetreToFoot" != converterName) & 
+		    ("MetresToFeet" != converterName) & 
+		    ("MetersToFeet" != converterName) & 
+		    ("YardsToMeters" != converterName) & 
+		    ("YardToMetre" != converterName) & 
+		    ("YardsToMetres" != converterName) &
+			(converterName  != "No")&
+			(converterName  != "NO") & 
+			(converterName  != "N") & 
+			(converterName  != "n") & 
+			(converterName  != "no"))
 	  {
 	    throw no_converter_error();
 	  }
-	  if (!(converterStream >> converterValue)){
-	    input_block = true;
-	    std::cout << " Please try to input a double number as the second argument type" << std::endl;
-      }
-	  if (input_block  == false) {
-	    double (UnitConverter::*ptr_action)(double) const = NULL; // To set pointer to convert method you have to initilize the pointer as NULL [at least according to http://www.newty.de/fpt/fpt.html#defi]
-        ptr_action = &UnitConverter::convert;
-        auto ptr_converter = createdFactory->create_method(converterName); //using Factory checks for existing Conversions
-	    Command input_command(ptr_converter, ptr_action, converterValue);
-	    conversions.push_back(input_command);
+	  try {
+	    if (!(converterStream >> converterValue)){
+	      input_block = true;
+	      std::cout << " Please try to input a double number as the second argument type" << std::endl;
+        }
+		if (converterValue > DBL_MAX) {
+		std::cout << "Would throw if I could but it's already p. save.";
+		  throw high_input_error();
+		}
+	    if (input_block  == false) {
+	      double (UnitConverter::*ptr_action)(double) const = NULL; // To set pointer to convert method you have to initilize the pointer as NULL [at least according to http://www.newty.de/fpt/fpt.html#defi]
+          ptr_action = &UnitConverter::convert;
+          auto ptr_converter = createdFactory->create_method(converterName); //using Factory checks for existing Conversions
+	      Command input_command(ptr_converter, ptr_action, converterValue);
+	      conversions.push_back(input_command);
+	    }
+	  } 
+	  catch (high_input_error& high_exception) {
+	    std::cout << std::endl << high_exception.what() << std::endl;
 	  }
 	}
 	catch (no_converter_error& except) {
@@ -105,6 +122,7 @@ int main(int argc, char* argv[])
   }
   for (auto it : conversions) {
     it.execute();
+	std::cout << "execute";
   }
   return 0;
 }
